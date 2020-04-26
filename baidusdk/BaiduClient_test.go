@@ -6,7 +6,7 @@ func TestBaiduMapClient_GetGeoCode(t *testing.T) {
 
 	d := &BaiduMapClient{
 		BaseUrl: "http://api.map.baidu.com",
-		SK:      "j0kOCLIvS2mR5pRLSW39Sao6HgNZwFD8",
+		SK:      "",
 	}
 	got, err := d.GetGeoCode("杭州大厦")
 	if err != nil {
