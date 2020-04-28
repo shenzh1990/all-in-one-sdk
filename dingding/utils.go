@@ -1,4 +1,4 @@
-package utils
+package dingding
 
 import (
 	"crypto/hmac"
