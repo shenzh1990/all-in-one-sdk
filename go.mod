@@ -1,4 +1,4 @@
-module all-in-one-sdk
+module github.com/shenzh1990/all-in-one-sdk
 
 go 1.13
 
