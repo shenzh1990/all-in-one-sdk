@@ -1,4 +1,4 @@
-module AllInOneSdk
+module all-in-one-sdk
 
 go 1.13
 
