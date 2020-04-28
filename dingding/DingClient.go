@@ -2,7 +2,6 @@ package dingding
 
 import (
 	"errors"
-	"fmt"
 	"github.com/json-iterator/go"
 	"github.com/parnurzeal/gorequest"
 	"sync"
@@ -49,6 +48,9 @@ func (d *DingClient) GetAccessToken() string {
 	return d.AccessToken.AccessToken
 }
 
+/**
+发送群消息 对应钉钉 =chat/send
+*/
 func (d *DingClient) SendGroupMessage(message string, chatId string) error {
 	groupMessage := GroupMessage{
 		Chatid:  chatId,
@@ -67,7 +69,6 @@ func (d *DingClient) SendGroupMessage(message string, chatId string) error {
 	}
 
 	if jsoniter.Get(body, "errcode").ToInt32() != 0 {
-		fmt.Print(string(body))
 		return errors.New(string(body))
 	}
 	return nil
