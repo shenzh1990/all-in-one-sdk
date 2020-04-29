@@ -27,7 +27,7 @@ func (d *DingMcClient) DingMachineMessage(req *http.Request, callback Callback) 
 
 	timestamp := req.Header.Get("timestamp")
 	signkey := GetHmacByte(timestamp+"\n"+d.appSecret, d.appSecret)
-	signData := base64.StdEncoding.EncodeToString([]byte(signkey))
+	signData := base64.StdEncoding.EncodeToString(signkey)
 	sign := req.Header.Get("sign")
 	if sign != signData {
 		return "", errors.New("Sign do not passed!")
