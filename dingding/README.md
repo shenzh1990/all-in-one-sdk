@@ -4,11 +4,11 @@
 ```go
     func (d *DingMcClient) DingMachineMessage(req *http.Request, callback Callback) (string, error)
 ```
-###入参
+入参
 -  req ：为 httpRequest 请求，
 - callback：回调函数，用来接受钉钉消息内容，并提供返回
 
-###出参
+出参
 - string: 返回需要回复json 内容
 - error：错误信息
 
@@ -16,10 +16,11 @@
 type Callback func(message *McInMessage) (interface{}, error)
 ```
 **该函数需要自行实现**
-###入参
+
+入参
 -  meesage： 钉钉机器人接受到的消息，
 
-###出参
+出参
 - interface: 返回需要回复实体对象
 - error：错误信息
 
