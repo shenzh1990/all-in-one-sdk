@@ -26,10 +26,10 @@ type Callback func(message *McInMessage) (interface{}, error)
 func (d *DingMcClient) DingMachineMessage(req *http.Request, callback Callback) (string, error) {
 
 	timestamp := req.Header.Get("timestamp")
-	signkey := GetHmacCode(timestamp+"\n"+d.appSecret, d.appSecret)
+	signkey := GetHmacByte(timestamp+"\n"+d.appSecret, d.appSecret)
 	signData := base64.StdEncoding.EncodeToString([]byte(signkey))
 	sign := req.Header.Get("sign")
-	if sign == signData {
+	if sign != signData {
 		return "", errors.New("Sign do not passed!")
 	}
 	mcInMessage := McInMessage{}

@@ -14,7 +14,11 @@ func GetHmacCode(value string, key string) string {
 	h.Write([]byte(value))
 	return hex.EncodeToString(h.Sum(nil))
 }
-
+func GetHmacByte(value string, key string) []byte {
+	h := hmac.New(sha256.New, []byte(key))
+	h.Write([]byte(value))
+	return h.Sum(nil)
+}
 func GetIp() (string, error) {
 	client := &http.Client{}
 	req, _ := http.NewRequest(http.MethodGet, "https://ip.cn", nil)
