@@ -43,7 +43,7 @@ func (d *DingMcClient) DingMachineMessage(req *http.Request, callback Callback) 
 	}
 	obj, err := callback(&mcInMessage)
 	if err != nil {
-		return "", errors.New("callback is err! detail:" + err.Error())
+		return "", errors.New("callback  err! detail:" + err.Error())
 	}
 
 	res, err := jsoniter.MarshalToString(&obj)
