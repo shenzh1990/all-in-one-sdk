@@ -31,7 +31,7 @@ type AtUser struct {
 type TestMessage struct {
 	MsgType string `json:"msgtype"`
 	Text    Text   `json:"text"`
-	At      At     `json:"at"`
+	At      At     `json:"at,omitempty"`
 }
 type Text struct {
 	Content string `json:"content"`
@@ -40,7 +40,7 @@ type Text struct {
 type MarkDownMessage struct {
 	MsgType  string   `json:"msgtype"`
 	Markdown Markdown `json:"markdown"`
-	At       At       `json:"at"`
+	At       At       `json:"at,omitempty"`
 }
 type Markdown struct {
 	Title string `json:"title"`
