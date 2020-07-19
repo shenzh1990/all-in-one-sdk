@@ -2,6 +2,7 @@ package dingding
 
 import (
 	"errors"
+	"fmt"
 	"github.com/json-iterator/go"
 	"github.com/parnurzeal/gorequest"
 	"sync"
@@ -72,4 +73,40 @@ func (d *DingClient) SendGroupMessage(message string, chatId string) error {
 		return errors.New(string(body))
 	}
 	return nil
+}
+
+/**
+通过手机号码获取useid
+*/
+func (d *DingClient) GetUserByMobile(mobile string) (string, error) {
+	accesstoken := d.GetAccessToken()
+	_, body, errs := gorequest.New().Get(d.DingUrl + "/user/get_by_mobile?access_token=" +
+		accesstoken + "&mobile=" + mobile).EndBytes()
+	if len(errs) > 0 {
+		return "", errors.New("access get error")
+	}
+
+	if jsoniter.Get(body, "errcode").ToInt32() != 0 {
+		return "", errors.New(string(body))
+	}
+
+	return jsoniter.Get(body, "userid").ToString(), nil
+}
+
+/**
+通过手机号码获取useid
+*/
+func (d *DingClient) SendWorkMessage(message string) (string, error) {
+	accesstoken := "e4b288cb97ef3d30b1b14b0441775357" // d.GetAccessToken()
+	fmt.Println(accesstoken)
+	_, body, errs := gorequest.New().Post(d.DingUrl + "/topapi/message/corpconversation/asyncsend_v2?access_token=" +
+		accesstoken).Send(message).EndBytes()
+	if len(errs) > 0 {
+		return "", errors.New("access get error")
+	}
+
+	if jsoniter.Get(body, "errcode").ToInt32() != 0 {
+		return "", errors.New(string(body))
+	}
+	return string(body), nil
 }
