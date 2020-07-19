@@ -94,10 +94,10 @@ func (d *DingClient) GetUserByMobile(mobile string) (string, error) {
 }
 
 /**
-通过手机号码获取useid
+发送工作通知
 */
 func (d *DingClient) SendWorkMessage(message string) (string, error) {
-	accesstoken := "e4b288cb97ef3d30b1b14b0441775357" // d.GetAccessToken()
+	accesstoken := d.GetAccessToken()
 	fmt.Println(accesstoken)
 	_, body, errs := gorequest.New().Post(d.DingUrl + "/topapi/message/corpconversation/asyncsend_v2?access_token=" +
 		accesstoken).Send(message).EndBytes()
