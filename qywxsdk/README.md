@@ -2,15 +2,14 @@
 
 ## 核心函数解析
 ```go
-    func (d *QyWxMcClient) QyWxMachineMessage(req *http.Request, callback Callback) 
+    func (d *QyWxMcClient) QyWxMachineMessage(req *http.Request, callback Callback)  (string, error) 
 ```
 入参
 -  req ：为 httpRequest 请求，
 - callback：回调函数，用来接受企业微信消息内容，并提供返回
 
 出参
-- string: 返回需要回复内容
-- error：错误信息
+
 
 ```go
 type Callback func(message *QyWxResMessage) (interface{}, error)
