@@ -28,7 +28,7 @@ func NewQyWxClient(WxUrl, CropId, CropSecret string) *QyWxClient {
 }
 func (d *QyWxClient) initAccessToken() error {
 	_, _, errs := gorequest.New().Get(d.WxUrl + "cgi-bin/gettoken?corpid=" +
-		d.CropId + "corpsecret=" + d.CropSecret + "").EndStruct(&d.AccessToken)
+		d.CropId + "&corpsecret=" + d.CropSecret + "").EndStruct(&d.AccessToken)
 	if len(errs) > 0 {
 		return errors.New("access get error")
 	}
