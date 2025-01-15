@@ -74,13 +74,15 @@ type QyWxMessage struct {
 	MsgId        string   `xml:"MsgId"`
 	AgentID      string   `xml:"AgentID"`
 }
-
-// 扩展原有消息库 同时使用企业微信机器人和企业微信客服消息
-type QyWxKfMessage struct {
-	QyWxMessage
-	Event    CDATA `xml:"event"`
-	Token    CDATA `xml:"Token"`
-	OpenKfId CDATA `xml:"OpenKfId"`
+type TxetMessage struct {
+	Touser   string      `json:"touser"`
+	OpenKfid string      `json:"open_kfid"`
+	Msgid    string      `json:"msgid"`
+	Msgtype  string      `json:"msgtype"`
+	Text     TextContent `json:"text"`
+}
+type TextContent struct {
+	Content string `json:"content"`
 }
 
 /*

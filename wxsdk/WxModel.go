@@ -1,7 +1,6 @@
 package wxsdk
 
 import (
-	"encoding/xml"
 	"time"
 )
 

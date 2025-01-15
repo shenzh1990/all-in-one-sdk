@@ -1,17 +1,10 @@
 package wxsdk
 
 import (
-	"crypto/sha1"
-	"encoding/xml"
 	"errors"
 	"fmt"
 	"github.com/json-iterator/go"
 	"github.com/parnurzeal/gorequest"
-	"io"
-	"io/ioutil"
-	"net/http"
-	"sort"
-	"strings"
 	"sync"
 	"time"
 )
@@ -58,7 +51,8 @@ func (d *WxClient) GetAccessToken() string {
 	return d.AccessToken.AccessToken
 }
 
-/**
+/*
+*
 自定义菜单创建 https://developers.weixin.qq.com/doc/offiaccount/Custom_Menus/Creating_Custom-Defined_Menu.html
 */
 func (d *WxClient) CreateMenu(wxMenu WxMenu) error {
@@ -79,7 +73,8 @@ func (d *WxClient) CreateMenu(wxMenu WxMenu) error {
 	return nil
 }
 
-/**
+/*
+*
 自定义菜单包括非自定义菜单查询
 */
 func (d *WxClient) GetCurrentMenu() (WxMenu, error) {
@@ -96,7 +91,8 @@ func (d *WxClient) GetCurrentMenu() (WxMenu, error) {
 	return wxMenu, nil
 }
 
-/**
+/*
+*
 自定义菜单删除
 */
 func (d *WxClient) DeleteMenu() error {
@@ -117,7 +113,8 @@ func (d *WxClient) DeleteMenu() error {
 	return nil
 }
 
-/**
+/*
+*
 自定义菜单包括非自定义菜单查询
 */
 func (d *WxClient) GetMenu() (WxMenu, error) {
