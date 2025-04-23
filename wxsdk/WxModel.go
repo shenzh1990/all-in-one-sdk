@@ -25,3 +25,14 @@ type Button struct {
 	PagePath  string   `json:"pagepath,omitempty"`
 	SubButton []Button `json:"sub_button,omitempty"`
 }
+type TemplateMessage struct {
+	ToUser     string                 `json:"touser"`
+	TemplateID string                 `json:"template_id"`
+	URL        string                 `json:"url,omitempty"`
+	Data       map[string]ValueObject `json:"data"`
+}
+
+type ValueObject struct {
+	Value string `json:"value"`
+	Color string `json:"color,omitempty"`
+}

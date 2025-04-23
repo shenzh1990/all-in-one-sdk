@@ -130,3 +130,22 @@ func (d *WxClient) GetMenu() (WxMenu, error) {
 	}
 	return wxMenu, nil
 }
+
+/*
+*
+发送模板消息
+*/
+func (d *WxClient) SendTemplateMessage(message TemplateMessage) error {
+	accesstoken := d.GetAccessToken()
+	_, body, errs := gorequest.New().Post(d.WxUrl + "/cgi-bin/message/template/send?access_token=" +
+		accesstoken).Send(message).EndBytes()
+	if len(errs) > 0 {
+		return errors.New("create menu error")
+	}
+
+	if jsoniter.Get(body, "errcode").ToInt32() != 0 {
+		fmt.Print(string(body))
+		return errors.New(string(body))
+	}
+	return nil
+}
